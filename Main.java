@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
@@ -42,10 +43,11 @@ public class Main {
 		List<String> records = readFile(filename);
 
 		/* <------------Code added in by myself starts here ---------------> */
+		// ArrayList<Cow> herd = new ArrayList<Cow>();
 		HashSet<Cow> herd = new HashSet<Cow>();
 		String[] action = null;
 
-		for (int i = 1; i <= records.size(); i++) {
+		for (int i = 1; i < records.size(); i++) {
 			action = records.get(i).split("\\s+");
 			if (herd.isEmpty()) {
 				herd.add(new Cow(action[0]));
@@ -64,6 +66,7 @@ public class Main {
 							}
 						}
 						if (action[1].equals("T")) {
+							continue;
 						}
 					}
 				}
