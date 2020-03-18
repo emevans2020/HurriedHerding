@@ -1,4 +1,4 @@
-public class Cow implements Comparable<Cow>{
+public class Cow implements Comparable<Cow> {
 	String ID;
 	int lowestWeight;
 	int latestWeight;
@@ -22,8 +22,7 @@ public class Cow implements Comparable<Cow>{
 
 	public void updateMilk(int m) {
 		this.allMilkings += m;
-		this.numOfMilkings++;
-		avgMilkProduction();
+		this.numOfMilkings ++;
 	}
 
 	public int avgMilkProduction() {
@@ -36,25 +35,19 @@ public class Cow implements Comparable<Cow>{
 
 	@Override
 	public int compareTo(Cow oc) {
-		if(this.lowestWeight > oc.lowestWeight) {
+		if (this.lowestWeight > oc.lowestWeight) {
 			return 1;
-		}
-		else if(this.lowestWeight < oc.lowestWeight) {
+		} else if (this.lowestWeight < oc.lowestWeight) {
 			return -1;
-		}
-		else if(this.latestWeight > oc.latestWeight) {
+		} else if (this.latestWeight > oc.latestWeight) {
 			return 1;
-		}
-		else if(this.latestWeight < oc.latestWeight) {
+		} else if (this.latestWeight < oc.latestWeight) {
 			return -1;
-		}
-		else if(this.avgMilkProduction() > oc.avgMilkProduction()) {
+		} else if (this.avgMilkProduction() > oc.avgMilkProduction()) {
 			return 1;
-		}
-		else if(this.avgMilkProduction() < oc.avgMilkProduction()) {
+		} else if (this.avgMilkProduction() < oc.avgMilkProduction()) {
 			return -1;
-		}
-		else {
+		} else {
 			return 0;
 		}
 	}
@@ -62,6 +55,7 @@ public class Cow implements Comparable<Cow>{
 	public String toString() {
 		return ID + " " + lowestWeight + " " + latestWeight + " " + this.avgMilkProduction();
 	}
+
 	// there are no parameters because giving back hashcode of objects have now
 	// hashCode is cheap
 	// easiest way to remove duplications is to create a hashCode
@@ -72,8 +66,7 @@ public class Cow implements Comparable<Cow>{
 	}
 
 	@Override
-	public boolean equals(Object otherCow){
-		this.latestWeight = (((Cow)otherCow).lowestWeight);
-		return this.ID.equals(((Cow)otherCow).ID);
-	}	
+	public boolean equals(Object otherCow) {
+		return this.ID.equals(((Cow) otherCow).ID);
+	}
 }

@@ -1,7 +1,6 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
@@ -43,11 +42,10 @@ public class Main {
 		List<String> records = readFile(filename);
 
 		/* <------------Code added in by myself starts here ---------------> */
-		// ArrayList<Cow> herd = new ArrayList<Cow>();
 		HashSet<Cow> herd = new HashSet<Cow>();
 		String[] action = null;
 
-		for (int i = 1; i < Integer.parseInt(records.get(0)); i++) {
+		for (int i = 1; i <= records.size(); i++) {
 			action = records.get(i).split("\\s+");
 			if (herd.isEmpty()) {
 				herd.add(new Cow(action[0]));
@@ -55,30 +53,30 @@ public class Main {
 				herd.add(new Cow(action[0]));
 				for (Cow c : herd) {
 					if (herd.contains(c)) {
-							if (action[1].equals("W")) {
-								if (c.ID.equals(action[0])){
-									c.getLowestWeight(Integer.parseInt(action[2]));
-								}
+						if (action[1].equals("W")) {
+							if (c.ID.equals(action[0])) {
+								c.getLowestWeight(Integer.parseInt(action[2]));
 							}
-							if (action[1].equals("M")) {
-								if (c.ID.equals(action[0])){
-									c.updateMilk(Integer.parseInt(action[2]));
-								}
+						}
+						if (action[1].equals("M")) {
+							if (c.ID.equals(action[0])) {
+								c.updateMilk(Integer.parseInt(action[2]));
 							}
-							if (action[1].equals("T")) {
-							}
+						}
+						if (action[1].equals("T")) {
 						}
 					}
 				}
 			}
+		}
 		ArrayList<Cow> orderedCows = new ArrayList<Cow>();
-		for(Cow c: herd) {
-			if(c.latestWeight!= 0 && c.lowestWeight!= 0 && c.numOfMilkings !=0 && c.allMilkings != 0) {
+		for (Cow c : herd) {
+			if (c.latestWeight != 0 && c.lowestWeight != 0 && c.numOfMilkings != 0 && c.allMilkings != 0) {
 				orderedCows.add(c);
 			}
 		}
 		orderedCows.sort(null);
-		for(Cow c: orderedCows) {
+		for (Cow c : orderedCows) {
 			System.out.println(c);
 		}
 	}
