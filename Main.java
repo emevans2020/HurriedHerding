@@ -71,8 +71,14 @@ public class Main {
 					}
 				}
 			}
-
-		for (Cow c : herd) {
+		ArrayList<Cow> orderedCows = new ArrayList<Cow>();
+		for(Cow c: herd) {
+			if(c.latestWeight!= 0 && c.lowestWeight!= 0 && c.numOfMilkings !=0 && c.allMilkings != 0) {
+				orderedCows.add(c);
+			}
+		}
+		orderedCows.sort(null);
+		for(Cow c: orderedCows) {
 			System.out.println(c);
 		}
 	}
