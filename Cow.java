@@ -13,8 +13,8 @@ public class Cow implements Comparable<Cow> {
 		this.numOfMilkings = 0;
 	}
 
-	public void getLowestWeight(int w) {
-		if (w <= this.lowestWeight || this.lowestWeight == 0) {
+	public void setLowestWeight(int w) {
+		if (w < this.lowestWeight || this.lowestWeight == 0) {
 			this.lowestWeight = w;
 		}
 		this.latestWeight = w;

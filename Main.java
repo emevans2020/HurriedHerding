@@ -43,37 +43,33 @@ public class Main {
 		List<String> records = readFile(filename);
 
 		/* <------------Code added in by myself starts here ---------------> */
-		// ArrayList<Cow> herd = new ArrayList<Cow>();
-		HashSet<Cow> herd = new HashSet<Cow>();
+		HashMap<String, Cow> cows = new HashMap<String,Cow>();
+
 		String[] action = null;
 
 		for (int i = 1; i < records.size(); i++) {
 			action = records.get(i).split("\\s+");
-			if (herd.isEmpty()) {
-				herd.add(new Cow(action[0]));
-			} else if (!herd.isEmpty()) {
-				herd.add(new Cow(action[0]));
-				for (Cow c : herd) {
-					if (herd.contains(c)) {
-						if (action[1].equals("W")) {
-							if (c.ID.equals(action[0])) {
-								c.getLowestWeight(Integer.parseInt(action[2]));
-							}
-						}
-						if (action[1].equals("M")) {
-							if (c.ID.equals(action[0])) {
-								c.updateMilk(Integer.parseInt(action[2]));
-							}
-						}
-						if (action[1].equals("T")) {
-							continue;
-						}
-					}
+			if (!cows.containsKey(action[0])){
+				cows.put(action[0], new Cow(action[0]));
+			} 
+			Cow c = cows.get(action[0]);
+			if (action[1].equals("W")) {
+				if (c.ID.equals(action[0])) {
+					c.setLowestWeight(Integer.parseInt(action[2]));
 				}
 			}
+			if (action[1].equals("M")) {
+				if (c.ID.equals(action[0])) {
+					c.updateMilk(Integer.parseInt(action[2]));
+				}
+			}
+			if (action[1].equals("T")) {
+				continue;
+			}
 		}
+
 		ArrayList<Cow> orderedCows = new ArrayList<Cow>();
-		for (Cow c : herd) {
+		for (Cow c : cows.values()) {
 			if (c.latestWeight != 0 && c.lowestWeight != 0 && c.numOfMilkings != 0 && c.allMilkings != 0) {
 				orderedCows.add(c);
 			}
